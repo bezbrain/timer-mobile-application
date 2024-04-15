@@ -1,15 +1,23 @@
 import React from "react";
-import SharedHeader from "./sharedHeader";
 import { View } from "react-native";
-import { ActivatedAlarm, CurrentTime, SecondsCountDown, StopWatch } from ".";
+import { useScreenController } from "../context/screenContoller";
+import ActivatedAlarm from "./activatedAlarm";
+import CurrentTime from "./currentTime";
+import SecondsCountDown from "./secondsCountDown";
+import StopWatch from "./stopWatch";
 
 const AllScreens = () => {
+  const { isCurrentPage } = useScreenController();
+  //   console.log(isCurrentPage);
+  const { activateAlarm, currentTime, secondsCountdown, stopWatch } =
+    isCurrentPage;
+
   return (
     <View>
-      <ActivatedAlarm />
-      <CurrentTime />
-      <SecondsCountDown />
-      <StopWatch />
+      {activateAlarm && <ActivatedAlarm />}
+      {currentTime && <CurrentTime />}
+      {secondsCountdown && <SecondsCountDown />}
+      {stopWatch && <StopWatch />}
     </View>
   );
 };

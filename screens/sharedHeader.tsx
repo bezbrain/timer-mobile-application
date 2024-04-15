@@ -6,31 +6,61 @@ import { Entypo } from "@expo/vector-icons";
 import { StyleSheet, View } from "react-native";
 import { Colors } from "../utils/colors";
 import { useScreenController } from "../context/screenContoller";
+import { ScreenControls } from "../context/types.context";
 
 const { whitish } = Colors;
 
 const SharedHeader = () => {
-  const { isCurrentPage } = useScreenController();
-  console.log(isCurrentPage);
+  const { isCurrentPage, setIsCurrentPage } = useScreenController();
+
+  const setAllToFalse = () => {
+    setIsCurrentPage((prevState: ScreenControls) => ({
+      ...prevState,
+      activateAlarm: false,
+      currentTime: false,
+      secondsCountdown: false,
+      stopWatch: false,
+    }));
+  };
 
   const handleActivatedAlarm = () => {
-    console.log("Activated Alarm");
+    setAllToFalse();
+    setIsCurrentPage((prevState: ScreenControls) => ({
+      ...prevState,
+      activateAlarm: true,
+    }));
   };
 
   const handleCurrentTime = () => {
-    console.log("Current Time");
+    setAllToFalse();
+    setIsCurrentPage((prevState: ScreenControls) => ({
+      ...prevState,
+      currentTime: true,
+    }));
   };
 
   const handleSecondsCountDown = () => {
-    console.log("Seconds Countdown");
+    setAllToFalse();
+    setIsCurrentPage((prevState: ScreenControls) => ({
+      ...prevState,
+      secondsCountdown: true,
+    }));
   };
 
   const handleStopWatch = () => {
-    console.log("Stop Watch");
+    setAllToFalse();
+    setIsCurrentPage((prevState: ScreenControls) => ({
+      ...prevState,
+      stopWatch: true,
+    }));
   };
 
   const handleThreeDots = () => {
-    console.log("Three dots");
+    // setAllToFalse();
+    // setIsCurrentPage({
+    //   ...isCurrentPage,
+    //   activateAlarm: true,
+    // });
   };
 
   return (
