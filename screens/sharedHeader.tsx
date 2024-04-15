@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons, Octicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Colors } from "../utils/colors";
 import { useScreenController } from "../context/screenContoller";
 import { ScreenControls } from "../context/types.context";
@@ -11,8 +11,9 @@ import { ScreenControls } from "../context/types.context";
 const { whitish } = Colors;
 
 const SharedHeader = () => {
-  const { isCurrentPage, setIsCurrentPage } = useScreenController();
+  const { setIsCurrentPage, isSettings, setIsSettings } = useScreenController();
 
+  // SET ALL OBJECT KEY VALUES TO FALSE
   const setAllToFalse = () => {
     setIsCurrentPage((prevState: ScreenControls) => ({
       ...prevState,
@@ -23,6 +24,7 @@ const SharedHeader = () => {
     }));
   };
 
+  // SET ONLY ACTIVATEALARM KEY VALUE TO TRUE SO THAT ONLY THE PAGE IS NAVIGATED TO
   const handleActivatedAlarm = () => {
     setAllToFalse();
     setIsCurrentPage((prevState: ScreenControls) => ({
@@ -31,6 +33,7 @@ const SharedHeader = () => {
     }));
   };
 
+  // SET ONLY CURRENTTIME KEY VALUE TO TRUE SO THAT ONLY THE PAGE IS NAVIGATED TO
   const handleCurrentTime = () => {
     setAllToFalse();
     setIsCurrentPage((prevState: ScreenControls) => ({
@@ -39,6 +42,7 @@ const SharedHeader = () => {
     }));
   };
 
+  // SET ONLY SECONDSCOUNTDOWN KEY VALUE TO TRUE SO THAT ONLY THE PAGE IS NAVIGATED TO
   const handleSecondsCountDown = () => {
     setAllToFalse();
     setIsCurrentPage((prevState: ScreenControls) => ({
@@ -47,6 +51,7 @@ const SharedHeader = () => {
     }));
   };
 
+  // SET ONLY STOPWATCH KEY VALUE TO TRUE SO THAT ONLY THE PAGE IS NAVIGATED TO
   const handleStopWatch = () => {
     setAllToFalse();
     setIsCurrentPage((prevState: ScreenControls) => ({
@@ -54,13 +59,20 @@ const SharedHeader = () => {
       stopWatch: true,
     }));
   };
-
   const handleThreeDots = () => {
-    //
+    setIsSettings(!isSettings);
   };
 
   return (
     <View style={styles.sharedRoot}>
+      {isSettings && (
+        <Pressable
+          style={styles.settingsContainer}
+          onPress={() => setIsSettings(false)}
+        >
+          <Text style={styles.settingsText}>Settings</Text>
+        </Pressable>
+      )}
       <MaterialIcons
         name="access-alarm"
         size={24}
@@ -105,5 +117,17 @@ const styles = StyleSheet.create({
     marginTop: 24,
     borderBottomWidth: 1,
     borderBottomColor: "#999696",
+    position: "relative",
+  },
+  settingsContainer: {
+    position: "absolute",
+    right: 16,
+    top: 48,
+    backgroundColor: "#000",
+    padding: 12,
+    borderRadius: 8,
+  },
+  settingsText: {
+    color: Colors.whitish,
   },
 });
