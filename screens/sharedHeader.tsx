@@ -5,10 +5,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { StyleSheet, View } from "react-native";
 import { Colors } from "../utils/colors";
+import { useScreenController } from "../context/screenContoller";
 
 const { whitish } = Colors;
 
 const SharedHeader = () => {
+  const { isCurrentPage } = useScreenController();
+  console.log(isCurrentPage);
+
   const handleActivatedAlarm = () => {
     console.log("Activated Alarm");
   };

@@ -3,6 +3,7 @@ import CurrentTime from "./currentTime";
 import SecondsCountDown from "./secondsCountDown";
 import StopWatch from "./stopWatch";
 import SharedHeader from "./sharedHeader";
+import AllScreens from "./allScreens";
 
 export {
   ActivatedAlarm,
@@ -10,4 +11,5 @@ export {
   SecondsCountDown,
   StopWatch,
   SharedHeader,
+  AllScreens,
 };

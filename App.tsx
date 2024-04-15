@@ -1,9 +1,17 @@
-import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
+import { ImageBackground, SafeAreaView, StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AppLoading from "expo-app-loading";
 import { fontsType } from "./utils/fonts";
-import { SharedHeader } from "./screens";
+import {
+  ActivatedAlarm,
+  AllScreens,
+  CurrentTime,
+  SecondsCountDown,
+  SharedHeader,
+  StopWatch,
+} from "./screens";
 import { Colors } from "./utils/colors";
+import { ScreenControllerProvider } from "./context/screenContoller";
 
 const { primary600, accent400 } = Colors;
 
@@ -16,19 +24,26 @@ const App = () => {
   }
 
   return (
-    <LinearGradient colors={[accent400, primary600]} style={styles.rootScreen}>
-      {/* <StatusBar style="auto" /> */}
-      <ImageBackground
-        source={require("./assets/images/timer-bg-img.jpg")}
-        resizeMode="cover"
+    <ScreenControllerProvider>
+      <LinearGradient
+        colors={[accent400, primary600]}
         style={styles.rootScreen}
-        imageStyle={styles.bgImage}
       >
-        <SafeAreaView style={styles.rootScreen}>
-          <SharedHeader />
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        {/* <StatusBar style="auto" /> */}
+        <ImageBackground
+          source={require("./assets/images/timer-bg-img.jpg")}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.bgImage}
+        >
+          <SafeAreaView style={styles.rootScreen}>
+            <SharedHeader />
+            {/* ALL SCREENS */}
+            <AllScreens />
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </ScreenControllerProvider>
   );
 };
 
