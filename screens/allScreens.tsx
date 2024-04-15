@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useScreenController } from "../context/screenContoller";
 import ActivatedAlarm from "./activatedAlarm";
 import CurrentTime from "./currentTime";
@@ -23,3 +23,9 @@ const AllScreens = () => {
 };
 
 export default AllScreens;
+
+const styles = StyleSheet.create({
+  pagesContainer: {
+    //
+  },
+});
