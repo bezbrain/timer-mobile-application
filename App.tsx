@@ -1,13 +1,11 @@
-import {
-  ImageBackground,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import AppLoading from "expo-app-loading";
 import { fontsType } from "./utils/fonts";
 import { SharedHeader } from "./screens";
+import { Colors } from "./utils/colors";
+
+const { primary600, accent400 } = Colors;
 
 const App = () => {
   // FONT IMPORT SETUP
@@ -18,7 +16,7 @@ const App = () => {
   }
 
   return (
-    <View style={styles.rootScreen}>
+    <LinearGradient colors={[accent400, primary600]} style={styles.rootScreen}>
       {/* <StatusBar style="auto" /> */}
       <ImageBackground
         source={require("./assets/images/timer-bg-img.jpg")}
@@ -30,7 +28,7 @@ const App = () => {
           <SharedHeader />
         </SafeAreaView>
       </ImageBackground>
-    </View>
+    </LinearGradient>
   );
 };
 
