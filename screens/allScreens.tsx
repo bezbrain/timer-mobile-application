@@ -26,7 +26,9 @@ export default AllScreens;
 
 const styles = StyleSheet.create({
   pagesContainer: {
+    flex: 1,
     paddingHorizontal: 16,
-    paddingBottom: 120,
+    paddingBottom: 48,
+    // color: "#04c1f5",
   },
 });
