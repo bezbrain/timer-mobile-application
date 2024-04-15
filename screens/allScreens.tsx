@@ -13,7 +13,7 @@ const AllScreens = () => {
     isCurrentPage;
 
   return (
-    <View>
+    <View style={styles.pagesContainer}>
       {activateAlarm && <ActivatedAlarm />}
       {currentTime && <CurrentTime />}
       {secondsCountdown && <SecondsCountDown />}
@@ -26,6 +26,6 @@ export default AllScreens;
 
 const styles = StyleSheet.create({
   pagesContainer: {
-    //
+    paddingHorizontal: 16,
   },
 });

@@ -5,6 +5,7 @@ import { fontsType } from "./utils/fonts";
 import { AllScreens, SharedHeader } from "./screens";
 import { Colors } from "./utils/colors";
 import { ScreenControllerProvider } from "./context/screenContoller";
+import { CurrentTimeProvider } from "./context/currentAlarm";
 
 const { primary600, accent400 } = Colors;
 
@@ -18,24 +19,26 @@ const App = () => {
 
   return (
     <ScreenControllerProvider>
-      <LinearGradient
-        colors={[accent400, primary600]}
-        style={styles.rootScreen}
-      >
-        {/* <StatusBar style="auto" /> */}
-        <ImageBackground
-          source={require("./assets/images/timer-bg-img.jpg")}
-          resizeMode="cover"
+      <CurrentTimeProvider>
+        <LinearGradient
+          colors={[accent400, primary600]}
           style={styles.rootScreen}
-          imageStyle={styles.bgImage}
         >
-          <SafeAreaView style={styles.rootScreen}>
-            <SharedHeader />
-            {/* ALL SCREENS */}
-            <AllScreens />
-          </SafeAreaView>
-        </ImageBackground>
-      </LinearGradient>
+          {/* <StatusBar style="auto" /> */}
+          <ImageBackground
+            source={require("./assets/images/timer-bg-img.jpg")}
+            resizeMode="cover"
+            style={styles.rootScreen}
+            imageStyle={styles.bgImage}
+          >
+            <SafeAreaView style={styles.rootScreen}>
+              <SharedHeader />
+              {/* ALL SCREENS */}
+              <AllScreens />
+            </SafeAreaView>
+          </ImageBackground>
+        </LinearGradient>
+      </CurrentTimeProvider>
     </ScreenControllerProvider>
   );
 };

@@ -1,10 +1,11 @@
 import React from "react";
 import { Text, View } from "react-native";
+import { CurrentAlarmTime } from "../components/screenComps/activeteAlarmComp";
 
 const ActivatedAlarm = () => {
   return (
     <View>
-      <Text>Activated Alarm</Text>
+      <CurrentAlarmTime />
     </View>
   );
 };

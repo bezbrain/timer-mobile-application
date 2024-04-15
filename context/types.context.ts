@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export interface ScreenControllerType {
+export interface ChildrenType {
   children: ReactNode;
 }
 

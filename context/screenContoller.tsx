@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { ScreenControllerType, ScreenControls } from "./types.context";
+import { ChildrenType, ScreenControls } from "./types.context";
 
 const AppContext = createContext<any | undefined>(undefined);
 
@@ -10,9 +10,7 @@ const screenControls: ScreenControls = {
   stopWatch: false,
 };
 
-export const ScreenControllerProvider = ({
-  children,
-}: ScreenControllerType) => {
+export const ScreenControllerProvider = ({ children }: ChildrenType) => {
   const [isCurrentPage, setIsCurrentPage] =
     useState<ScreenControls>(screenControls);
 
