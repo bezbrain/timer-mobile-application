@@ -3,23 +3,64 @@ import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons, Octicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Colors } from "../utils/colors";
 
 const { whitish } = Colors;
 
 const SharedHeader = () => {
+  const handleActivatedAlarm = () => {
+    console.log("Activated Alarm");
+  };
+
+  const handleCurrentTime = () => {
+    console.log("Current Time");
+  };
+
+  const handleSecondsCountDown = () => {
+    console.log("Seconds Countdown");
+  };
+
+  const handleStopWatch = () => {
+    console.log("Stop Watch");
+  };
+
+  const handleThreeDots = () => {
+    console.log("Three dots");
+  };
+
   return (
     <View style={styles.sharedRoot}>
-      <MaterialIcons name="access-alarm" size={24} color={whitish} />
-      <Ionicons name="time-outline" size={24} color={whitish} />
+      <MaterialIcons
+        name="access-alarm"
+        size={24}
+        color={whitish}
+        onPress={handleActivatedAlarm}
+      />
+      <Ionicons
+        name="time-outline"
+        size={24}
+        color={whitish}
+        onPress={handleCurrentTime}
+      />
       <MaterialCommunityIcons
         name="timer-sand-complete"
         size={24}
         color={whitish}
+        onPress={handleSecondsCountDown}
       />
-      <Octicons name="stopwatch" size={24} color={whitish} />
-      <Entypo name="dots-three-vertical" size={24} color={whitish} />
+      <Octicons
+        name="stopwatch"
+        size={24}
+        color={whitish}
+        onPress={handleStopWatch}
+      />
+      <Entypo
+        name="dots-three-vertical"
+        size={24}
+        color={whitish}
+        onPress={handleThreeDots}
+      />
     </View>
   );
 };
