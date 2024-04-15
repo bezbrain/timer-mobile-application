@@ -29,6 +29,7 @@ export default SharedHeader;
 const styles = StyleSheet.create({
   sharedRoot: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+    padding: 16,
   },
 });
