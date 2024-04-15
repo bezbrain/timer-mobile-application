@@ -1,15 +1,8 @@
-import { ImageBackground, SafeAreaView, StyleSheet, View } from "react-native";
+import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AppLoading from "expo-app-loading";
 import { fontsType } from "./utils/fonts";
-import {
-  ActivatedAlarm,
-  AllScreens,
-  CurrentTime,
-  SecondsCountDown,
-  SharedHeader,
-  StopWatch,
-} from "./screens";
+import { AllScreens, SharedHeader } from "./screens";
 import { Colors } from "./utils/colors";
 import { ScreenControllerProvider } from "./context/screenContoller";
 
