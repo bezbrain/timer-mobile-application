@@ -27,5 +27,6 @@ export default AllScreens;
 const styles = StyleSheet.create({
   pagesContainer: {
     paddingHorizontal: 16,
+    paddingBottom: 120,
   },
 });

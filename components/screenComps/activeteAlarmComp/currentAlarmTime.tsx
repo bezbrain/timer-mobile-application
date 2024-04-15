@@ -16,15 +16,17 @@ const CurrentAlarmTime = () => {
       {!isAlarmSet && (
         <MaterialCommunityIcons
           name="toggle-switch-off-outline"
-          size={36}
-          color="black"
+          size={48}
+          color="#92b5bf"
+          onPress={() => setIsAlarmSet(!isAlarmSet)}
         />
       )}
       {isAlarmSet && (
         <MaterialCommunityIcons
           name="toggle-switch-outline"
-          size={36}
-          color="black"
+          size={48}
+          color="#92b5bf"
+          onPress={() => setIsAlarmSet(!isAlarmSet)}
         />
       )}
     </View>
@@ -38,6 +40,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    borderBottomWidth: 0.5,
+    borderBottomColor: "#999696",
+    marginTop: 16,
   },
   timeText: {
     fontSize: 60,
