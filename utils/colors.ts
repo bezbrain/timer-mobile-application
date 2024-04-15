@@ -3,4 +3,5 @@ export const Colors = {
   accent400: "#2e788c",
   accent800: "#2e788c",
   whitish: "white",
+  whitish700: "#b6bcbd",
 };

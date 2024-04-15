@@ -5,7 +5,7 @@ import { CurrentAlarmTime } from "../components/screenComps/activeteAlarmComp";
 const ActivatedAlarm = () => {
   return (
     <ScrollView style={styles.alarmsContainer}>
-      {Array(10)
+      {Array(4)
         .fill(undefined)
         .map((_, i) => (
           <CurrentAlarmTime key={i} />

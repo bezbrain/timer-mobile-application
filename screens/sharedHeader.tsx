@@ -8,10 +8,11 @@ import { Colors } from "../utils/colors";
 import { useScreenController } from "../context/screenContoller";
 import { ScreenControls } from "../context/types.context";
 
-const { whitish } = Colors;
+const { whitish, whitish700 } = Colors;
 
 const SharedHeader = () => {
-  const { setIsCurrentPage, isSettings, setIsSettings } = useScreenController();
+  const { isCurrentPage, setIsCurrentPage, isSettings, setIsSettings } =
+    useScreenController();
 
   // SET ALL OBJECT KEY VALUES TO FALSE
   const setAllToFalse = () => {
@@ -76,25 +77,25 @@ const SharedHeader = () => {
       <MaterialIcons
         name="access-alarm"
         size={24}
-        color={whitish}
+        color={isCurrentPage.activateAlarm ? whitish : whitish700}
         onPress={handleActivatedAlarm}
       />
       <Ionicons
         name="time-outline"
         size={24}
-        color={whitish}
+        color={isCurrentPage.currentTime ? whitish : whitish700}
         onPress={handleCurrentTime}
       />
       <MaterialCommunityIcons
         name="timer-sand-complete"
         size={24}
-        color={whitish}
+        color={isCurrentPage.secondsCountdown ? whitish : whitish700}
         onPress={handleSecondsCountDown}
       />
       <Octicons
         name="stopwatch"
         size={24}
-        color={whitish}
+        color={isCurrentPage.stopWatch ? whitish : whitish700}
         onPress={handleStopWatch}
       />
       <Entypo
