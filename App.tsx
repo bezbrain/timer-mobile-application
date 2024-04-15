@@ -1,6 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import {
+  ImageBackground,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import AppLoading from "expo-app-loading";
 import { fontsType } from "./utils/fonts";
+import { SharedHeader } from "./screens";
 
 const App = () => {
   // FONT IMPORT SETUP
@@ -11,19 +18,28 @@ const App = () => {
   }
 
   return (
-    <View style={styles.rootContainer}>
+    <View style={styles.rootScreen}>
       {/* <StatusBar style="auto" /> */}
-      <Text>The root of the app</Text>
+      <ImageBackground
+        source={require("./assets/images/timer-bg-img.jpg")}
+        resizeMode="cover"
+        style={styles.rootScreen}
+        imageStyle={styles.bgImage}
+      >
+        <SafeAreaView style={styles.rootScreen}>
+          <SharedHeader />
+        </SafeAreaView>
+      </ImageBackground>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  rootContainer: {
+  rootScreen: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  },
+  bgImage: {
+    opacity: 0.15,
   },
 });
 
