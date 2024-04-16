@@ -2,9 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Foundation } from "@expo/vector-icons";
 import { Colors } from "../utils/colors";
+import { formatDate } from "../utils/convertDateFormats";
 
 const CurrentTime = () => {
   const [isCurrentTime, setIsCurrentTime] = useState<Date>(new Date());
+
+  // console.log(isCurrentTime.getTimezoneOffset());
+  const timeZone = new Date().toLocaleTimeString("en-US", {
+    timeZoneName: "long",
+  });
+  // console.log(timeZone.split(" "));
+  const getArrOfTimeZone = timeZone.split(" ");
+
+  // console.log(formatDate());
+  const dateAndTime = formatDate();
 
   useEffect(() => {
     const timeoutID = setTimeout(() => {
@@ -30,8 +41,11 @@ const CurrentTime = () => {
           <Text style={styles.timeType}>{formattedAmPm}</Text>
         </Text>
 
-        <Text style={styles.continent}>MON, APR 15</Text>
-        <Text style={styles.continent}>WEST Africa Standard Time</Text>
+        <Text style={styles.continent}>{dateAndTime}</Text>
+        <Text style={styles.continent}>
+          {getArrOfTimeZone[1]} {getArrOfTimeZone[2]} {getArrOfTimeZone[3]}{" "}
+          {getArrOfTimeZone[4]}
+        </Text>
       </View>
 
       <Pressable style={styles.baseIconContainer}>
