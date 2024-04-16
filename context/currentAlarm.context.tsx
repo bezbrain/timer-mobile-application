@@ -12,6 +12,8 @@ export const CurrentTimeProvider = ({ children }: ChildrenType) => {
   const [stopWatchCount, setStopWatchCount] = useState<number>(0);
   const [startStopWatchCount, setStartStopWatchCount] =
     useState<boolean>(false);
+  const [trackStopWatchCount, setTrackStopWatchCount] =
+    useState<boolean>(false);
 
   return (
     <AppContext.Provider
@@ -26,6 +28,8 @@ export const CurrentTimeProvider = ({ children }: ChildrenType) => {
         setStopWatchCount,
         startStopWatchCount,
         setStartStopWatchCount,
+        trackStopWatchCount,
+        setTrackStopWatchCount,
       }}
     >
       {children}

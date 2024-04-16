@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { Feather, Ionicons } from "@expo/vector-icons";
 import { ContainerWrappers } from "../components/helpers";
 import { RoundedButton } from "../components/general";
 import { Colors } from "../utils/colors";
@@ -12,6 +12,8 @@ const StopWatch = () => {
     setStopWatchCount,
     startStopWatchCount,
     setStartStopWatchCount,
+    trackStopWatchCount,
+    setTrackStopWatchCount,
   } = useCurrentAlarm();
 
   // TRIGGER THE STOPWATCH START OR STOP
@@ -23,12 +25,23 @@ const StopWatch = () => {
     }
   };
 
+  // TRIGGER THE RELOAD BUTTON
+  const handleReloadClick = () => {
+    setStopWatchCount(0);
+    setStartStopWatchCount(false);
+    setTrackStopWatchCount(true);
+  };
+
   useEffect(() => {
     // Initiate Stop watch
     if (startStopWatchCount) {
       setTimeout(() => {
         setStopWatchCount(stopWatchCount + 1);
+        setTrackStopWatchCount(false);
       }, 1000);
+    }
+    if (trackStopWatchCount) {
+      setStopWatchCount(0);
     }
   }, [stopWatchCount, startStopWatchCount]);
 
@@ -40,14 +53,23 @@ const StopWatch = () => {
         </View>
       </View>
 
-      <RoundedButton handlePress={handleStopWatch}>
-        {!startStopWatchCount && (
-          <Feather name="play" size={24} color={Colors.whitish} />
-        )}
-        {startStopWatchCount && (
-          <Feather name="pause" size={24} color={Colors.whitish} />
-        )}
-      </RoundedButton>
+      <View style={styles.reloadIcon}>
+        <Ionicons
+          name="reload"
+          size={36}
+          color={Colors.whitish}
+          onPress={handleReloadClick}
+        />
+
+        <RoundedButton handlePress={handleStopWatch}>
+          {!startStopWatchCount && (
+            <Feather name="play" size={24} color={Colors.whitish} />
+          )}
+          {startStopWatchCount && (
+            <Feather name="pause" size={24} color={Colors.whitish} />
+          )}
+        </RoundedButton>
+      </View>
     </ContainerWrappers>
   );
 };
@@ -72,5 +94,11 @@ const styles = StyleSheet.create({
     fontFamily: "degular-bold",
     color: Colors.whitish,
     fontSize: 48,
+  },
+  reloadIcon: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 30,
   },
 });
