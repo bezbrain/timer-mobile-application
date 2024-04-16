@@ -5,8 +5,20 @@ const AppContext = createContext<any | undefined>(undefined);
 
 export const CurrentTimeProvider = ({ children }: ChildrenType) => {
   const [isAlarmSet, setIsAlarmSet] = useState<boolean>(false);
+  const [countDown, setCountDown] = useState<number>(5);
+  const [startCountDown, setStartCountDown] = useState<boolean>(false);
+
   return (
-    <AppContext.Provider value={{ isAlarmSet, setIsAlarmSet }}>
+    <AppContext.Provider
+      value={{
+        isAlarmSet,
+        setIsAlarmSet,
+        countDown,
+        setCountDown,
+        startCountDown,
+        setStartCountDown,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

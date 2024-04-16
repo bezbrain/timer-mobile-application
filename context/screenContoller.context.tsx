@@ -13,6 +13,7 @@ const screenControls: ScreenControls = {
 export const ScreenControllerProvider = ({ children }: ChildrenType) => {
   const [isCurrentPage, setIsCurrentPage] =
     useState<ScreenControls>(screenControls);
+
   const [isSettings, setIsSettings] = useState<boolean>(false);
 
   return (

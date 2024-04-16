@@ -4,25 +4,30 @@ import { Feather } from "@expo/vector-icons";
 import { Colors } from "../utils/colors";
 import { ContainerWrappers } from "../components/helpers";
 import { RoundedButton } from "../components/general";
+import { CountDownModal } from "../components/screenComps/modal";
+import { useCurrentAlarm } from "../context/currentAlarm.context";
 
 const SecondsCountDown = () => {
-  const [countDown, setCountDown] = useState<number>(5);
-  const [startCountDown, setStartCountDown] = useState<boolean>(false);
+  const { countDown, setCountDown, startCountDown, setStartCountDown } =
+    useCurrentAlarm();
 
+  // TRIGGER THE COUNTDOWN
   const handleStartCountDown = () => {
     setStartCountDown(true);
   };
 
   useEffect(() => {
+    // Initiate Countdown
     if (countDown !== 0 && startCountDown) {
       setTimeout(() => {
         setCountDown(countDown - 1);
       }, 1000);
     }
-  }, [countDown]);
+  }, [countDown, startCountDown]);
 
   return (
     <ContainerWrappers>
+      {!countDown && <CountDownModal />}
       <View style={styles.countDownContainer}>
         <View style={styles.countDownCircle}>
           <Text style={styles.countDownText}>{countDown}</Text>
