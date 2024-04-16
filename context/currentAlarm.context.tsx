@@ -15,6 +15,8 @@ export const CurrentTimeProvider = ({ children }: ChildrenType) => {
   const [trackStopWatchCount, setTrackStopWatchCount] =
     useState<boolean>(false);
 
+  const [showAlarmModal, setShowAlarmModal] = useState(false);
+
   return (
     <AppContext.Provider
       value={{
@@ -30,6 +32,8 @@ export const CurrentTimeProvider = ({ children }: ChildrenType) => {
         setStartStopWatchCount,
         trackStopWatchCount,
         setTrackStopWatchCount,
+        showAlarmModal,
+        setShowAlarmModal,
       }}
     >
       {children}

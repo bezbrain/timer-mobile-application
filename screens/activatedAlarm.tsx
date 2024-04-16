@@ -5,10 +5,19 @@ import { ContainerWrappers } from "../components/helpers";
 import { RoundedButton } from "../components/general";
 import { AntDesign } from "@expo/vector-icons";
 import { Colors } from "../utils/colors";
+import { useCurrentAlarm } from "../context/currentAlarm.context";
+import { SetAlarmModal } from "../components/screenComps/modal";
 
 const ActivatedAlarm = () => {
+  const { showAlarmModal, setShowAlarmModal } = useCurrentAlarm();
+
+  const handleAlarmModal = () => {
+    setShowAlarmModal(true);
+  };
+
   return (
     <ContainerWrappers>
+      {showAlarmModal && <SetAlarmModal />}
       <ScrollView style={styles.alarmsContainer}>
         {Array(9)
           .fill(undefined)
@@ -16,7 +25,7 @@ const ActivatedAlarm = () => {
             <CurrentAlarmTime key={i} />
           ))}
       </ScrollView>
-      <RoundedButton>
+      <RoundedButton handlePress={handleAlarmModal}>
         <AntDesign name="plus" size={24} color={Colors.whitish} />
       </RoundedButton>
     </ContainerWrappers>
