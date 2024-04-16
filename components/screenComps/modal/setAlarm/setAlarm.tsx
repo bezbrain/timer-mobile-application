@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, View, Text } from "react-native";
 import AlarmButtons from "./setAlarmButtons/alarmButtons";
-import { Colors } from "../../../../utils/colors";
+import SetAlarmInput from "./setAlarmInput/setAlarmInput";
 
 const SetAlarm = () => {
   const [isHourFocused, setIsHourFocused] = useState(false);
@@ -30,28 +30,16 @@ const SetAlarm = () => {
   return (
     <View>
       <View style={styles.inputsContainer}>
-        <TextInput
-          placeholder="00"
-          style={[styles.inputsStyles, isHourFocused && styles.focusedInput]}
-          keyboardType="number-pad"
-          maxLength={2}
-          autoCapitalize="none"
-          autoCorrect={false}
-          caretHidden={true}
-          onFocus={handleHourFocus}
-          onBlur={handleHourBlur}
+        <SetAlarmInput
+          handleBlur={handleHourBlur}
+          handleFocus={handleHourFocus}
+          isFocused={isHourFocused}
         />
         <Text style={styles.timeSeparator}>:</Text>
-        <TextInput
-          placeholder="00"
-          style={[styles.inputsStyles, isMinuteFocused && styles.focusedInput]}
-          keyboardType="number-pad"
-          maxLength={2}
-          autoCapitalize="none"
-          autoCorrect={false}
-          caretHidden={true}
-          onFocus={handleMinuteFocus}
-          onBlur={handleMinuteBlur}
+        <SetAlarmInput
+          handleBlur={handleMinuteBlur}
+          handleFocus={handleMinuteFocus}
+          isFocused={isMinuteFocused}
         />
       </View>
 
@@ -68,16 +56,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 4,
-  },
-  inputsStyles: {
-    fontSize: 36,
-    fontFamily: "degular-regular",
-  },
-  focusedInput: {
-    borderWidth: 1,
-    borderColor: Colors.accent400,
-    borderRadius: 6,
-    paddingHorizontal: 4,
   },
   timeSeparator: {
     fontSize: 24,
