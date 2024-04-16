@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Colors } from "../utils/colors";
-import { useScreenController } from "../context/screenContoller";
+import { useScreenController } from "../context/screenContoller.context";
 import { ScreenControls } from "../context/types.context";
 
 const { whitish, whitish700 } = Colors;

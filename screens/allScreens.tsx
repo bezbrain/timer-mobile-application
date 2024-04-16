@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { useScreenController } from "../context/screenContoller";
+import { useScreenController } from "../context/screenContoller.context";
 import ActivatedAlarm from "./activatedAlarm";
 import CurrentTime from "./currentTime";
 import SecondsCountDown from "./secondsCountDown";

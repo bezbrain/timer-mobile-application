@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Colors } from "../../../utils/colors";
-import { useCurrentAlarm } from "../../../context/currentAlarm";
+import { useCurrentAlarm } from "../../../context/currentAlarm.context";
 
 const CurrentAlarmTime = () => {
   const { isAlarmSet, setIsAlarmSet } = useCurrentAlarm();

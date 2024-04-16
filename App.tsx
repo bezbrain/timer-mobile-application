@@ -4,8 +4,8 @@ import AppLoading from "expo-app-loading";
 import { fontsType } from "./utils/fonts";
 import { AllScreens, SharedHeader } from "./screens";
 import { Colors } from "./utils/colors";
-import { ScreenControllerProvider } from "./context/screenContoller";
-import { CurrentTimeProvider } from "./context/currentAlarm";
+import { ScreenControllerProvider } from "./context/screenContoller.context";
+import { CurrentTimeProvider } from "./context/currentAlarm.context";
 
 const { primary600, accent400 } = Colors;
 

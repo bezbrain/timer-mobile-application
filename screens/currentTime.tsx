@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Foundation } from "@expo/vector-icons";
+import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "../utils/colors";
 import { formatDate } from "../utils/convertDateFormats";
+import { RoundedButton } from "../components/general";
+import { ContainerWrappers } from "../components/helpers";
 
 const CurrentTime = () => {
   const [isCurrentTime, setIsCurrentTime] = useState<Date>(new Date());
@@ -32,7 +33,7 @@ const CurrentTime = () => {
   const formattedAmPm = formattedHour < 12 ? "AM" : "PM";
 
   return (
-    <View style={styles.currentTimeContainer}>
+    <ContainerWrappers>
       <View>
         <Text>
           <Text style={styles.timeText}>
@@ -48,22 +49,14 @@ const CurrentTime = () => {
         </Text>
       </View>
 
-      <Pressable style={styles.baseIconContainer}>
-        <Foundation name="web" size={28} color="white" />
-      </Pressable>
-    </View>
+      <RoundedButton />
+    </ContainerWrappers>
   );
 };
 
 export default CurrentTime;
 
 const styles = StyleSheet.create({
-  currentTimeContainer: {
-    flex: 1,
-    marginTop: 48,
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
   timeText: {
     fontSize: 84,
     color: Colors.whitish,
@@ -80,13 +73,5 @@ const styles = StyleSheet.create({
     fontFamily: "degular-regular",
     fontSize: 20,
     color: Colors.whitish,
-  },
-  baseIconContainer: {
-    backgroundColor: "#04c1f5",
-    height: 60,
-    width: 60,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 30,
   },
 });
