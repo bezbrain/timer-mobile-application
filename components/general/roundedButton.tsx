@@ -1,13 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { Foundation } from "@expo/vector-icons";
 
-const RoundedButton = () => {
-  return (
-    <Pressable style={styles.baseIconContainer}>
-      <Foundation name="web" size={28} color="white" />
-    </Pressable>
-  );
+interface RoundedButtonProps {
+  children: ReactNode;
+}
+
+const RoundedButton = ({ children }: RoundedButtonProps) => {
+  return <Pressable style={styles.baseIconContainer}>{children}</Pressable>;
 };
 
 export default RoundedButton;

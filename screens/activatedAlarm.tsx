@@ -3,6 +3,8 @@ import { ScrollView, StyleSheet } from "react-native";
 import { CurrentAlarmTime } from "../components/screenComps/activeteAlarmComp";
 import { ContainerWrappers } from "../components/helpers";
 import { RoundedButton } from "../components/general";
+import { AntDesign } from "@expo/vector-icons";
+import { Colors } from "../utils/colors";
 
 const ActivatedAlarm = () => {
   return (
@@ -14,7 +16,9 @@ const ActivatedAlarm = () => {
             <CurrentAlarmTime key={i} />
           ))}
       </ScrollView>
-      <RoundedButton />
+      <RoundedButton>
+        <AntDesign name="plus" size={24} color={Colors.whitish} />
+      </RoundedButton>
     </ContainerWrappers>
   );
 };

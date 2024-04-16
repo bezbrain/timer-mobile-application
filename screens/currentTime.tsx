@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Foundation } from "@expo/vector-icons";
 import { Colors } from "../utils/colors";
 import { formatDate } from "../utils/convertDateFormats";
 import { RoundedButton } from "../components/general";
@@ -49,7 +50,9 @@ const CurrentTime = () => {
         </Text>
       </View>
 
-      <RoundedButton />
+      <RoundedButton>
+        <Foundation name="web" size={28} color={Colors.whitish} />
+      </RoundedButton>
     </ContainerWrappers>
   );
 };
