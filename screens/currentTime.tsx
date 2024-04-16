@@ -7,13 +7,14 @@ const CurrentTime = () => {
   const [isCurrentTime, setIsCurrentTime] = useState<Date>(new Date());
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsCurrentTime(new Date()); // Update the current time every minute
-    }, 60000); // Interval set to 60 seconds (1 minute)
+    const timeoutID = setTimeout(() => {
+      setIsCurrentTime(new Date());
+    }, 1000); // Update every second
 
-    // Clean up the interval on component unmount
-    return () => clearInterval(intervalId);
-  }, [isCurrentTime, setIsCurrentTime]);
+    return () => {
+      clearTimeout(timeoutID); // Cleanup the timeout on component unmount
+    };
+  }, [isCurrentTime]);
 
   const formattedHour = isCurrentTime.getHours();
   const formattedMinute = isCurrentTime.getMinutes();
