@@ -1,7 +1,14 @@
 import { createContext, useContext, useState } from "react";
-import { ChildrenType } from "./types.context";
+import { AlarmFormat, ChildrenType } from "./types.context";
 
 const AppContext = createContext<any | undefined>(undefined);
+
+const alarmFormat: AlarmFormat = {
+  id: Date.now(),
+  hour: "",
+  minute: "",
+  meridiem: "",
+};
 
 export const CurrentTimeProvider = ({ children }: ChildrenType) => {
   const [isAlarmSet, setIsAlarmSet] = useState<boolean>(false);
@@ -15,7 +22,11 @@ export const CurrentTimeProvider = ({ children }: ChildrenType) => {
   const [trackStopWatchCount, setTrackStopWatchCount] =
     useState<boolean>(false);
 
-  const [showAlarmModal, setShowAlarmModal] = useState(false);
+  const [allAlarmTimes, setAllAlarmTimes] = useState<AlarmFormat>(alarmFormat);
+  const [showAlarmModal, setShowAlarmModal] = useState<boolean>(false);
+  const [alarmMinuteValue, setAlarmMinuteValue] = useState<string>("");
+  const [alarmHourValue, setAlarmHourValue] = useState<string>("");
+  const [pickMeridiem, setPickMeridiem] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
@@ -32,8 +43,16 @@ export const CurrentTimeProvider = ({ children }: ChildrenType) => {
         setStartStopWatchCount,
         trackStopWatchCount,
         setTrackStopWatchCount,
+        allAlarmTimes,
+        setAllAlarmTimes,
         showAlarmModal,
         setShowAlarmModal,
+        alarmMinuteValue,
+        setAlarmMinuteValue,
+        alarmHourValue,
+        setAlarmHourValue,
+        pickMeridiem,
+        setPickMeridiem,
       }}
     >
       {children}

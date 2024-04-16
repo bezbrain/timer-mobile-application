@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   modalTextContainer: {
     backgroundColor: Colors.whitish700,
     width: 300,
-    height: 150,
+    height: 200,
     justifyContent: "space-evenly",
     alignItems: "center",
     borderRadius: 8,

@@ -4,10 +4,16 @@ import { Colors } from "../../../../../utils/colors";
 import { useCurrentAlarm } from "../../../../../context/currentAlarm.context";
 
 const AlarmButtons = () => {
-  const { showAlarmModal, setShowAlarmModal } = useCurrentAlarm();
+  const { setShowAlarmModal, allAlarmTimes, setAllAlarmTimes } =
+    useCurrentAlarm();
 
   const handleCloseModal = () => {
     setShowAlarmModal(false);
+  };
+
+  const handleSetAlarm = () => {
+    setShowAlarmModal(false);
+    // setAllAlarmTimes()
   };
 
   return (
@@ -15,7 +21,7 @@ const AlarmButtons = () => {
       <Pressable onPress={handleCloseModal}>
         <Text style={styles.buttonText}>Cancel</Text>
       </Pressable>
-      <Pressable onPress={handleCloseModal}>
+      <Pressable onPress={handleSetAlarm}>
         <Text style={styles.buttonText}>OK</Text>
       </Pressable>
     </View>

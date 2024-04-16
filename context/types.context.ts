@@ -10,3 +10,10 @@ export interface ScreenControls {
   secondsCountdown: boolean;
   stopWatch: boolean;
 }
+
+export interface AlarmFormat {
+  id: number;
+  hour: string;
+  minute: string;
+  meridiem: string;
+}

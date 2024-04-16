@@ -6,12 +6,16 @@ interface SetAlarmInputProps {
   isFocused: boolean;
   handleFocus: () => void;
   handleBlur: () => void;
+  isValue: string;
+  handleTextChange: (text: string) => void;
 }
 
 const SetAlarmInput = ({
   isFocused,
   handleFocus,
   handleBlur,
+  isValue,
+  handleTextChange,
 }: SetAlarmInputProps) => {
   return (
     <TextInput
@@ -24,6 +28,8 @@ const SetAlarmInput = ({
       caretHidden={true}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      value={isValue}
+      onChangeText={handleTextChange}
     />
   );
 };
@@ -32,7 +38,7 @@ export default SetAlarmInput;
 
 const styles = StyleSheet.create({
   inputsStyles: {
-    fontSize: 36,
+    fontSize: 52,
     fontFamily: "degular-regular",
   },
   focusedInput: {

@@ -1,11 +1,21 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput, View, Text } from "react-native";
+import { StyleSheet, TextInput, View, Text, Pressable } from "react-native";
 import AlarmButtons from "./setAlarmButtons/alarmButtons";
 import SetAlarmInput from "./setAlarmInput/setAlarmInput";
+import { useCurrentAlarm } from "../../../../context/currentAlarm.context";
+import { Colors } from "../../../../utils/colors";
+import Meridiem from "./meridiem/meridiem";
 
 const SetAlarm = () => {
   const [isHourFocused, setIsHourFocused] = useState(false);
   const [isMinuteFocused, setIsMinuteFocused] = useState(false);
+
+  const {
+    alarmMinuteValue,
+    setAlarmMinuteValue,
+    alarmHourValue,
+    setAlarmHourValue,
+  } = useCurrentAlarm();
 
   const handleHourFocus = () => {
     setIsMinuteFocused(false);
@@ -27,6 +37,14 @@ const SetAlarm = () => {
     setIsHourFocused(false);
   };
 
+  const hoursTextChange = (hours: string) => {
+    setAlarmHourValue(hours);
+  };
+
+  const minutesTextChange = (minutes: string) => {
+    setAlarmMinuteValue(minutes);
+  };
+
   return (
     <View>
       <View style={styles.inputsContainer}>
@@ -34,13 +52,19 @@ const SetAlarm = () => {
           handleBlur={handleHourBlur}
           handleFocus={handleHourFocus}
           isFocused={isHourFocused}
+          isValue={alarmHourValue}
+          handleTextChange={hoursTextChange}
         />
         <Text style={styles.timeSeparator}>:</Text>
         <SetAlarmInput
           handleBlur={handleMinuteBlur}
           handleFocus={handleMinuteFocus}
           isFocused={isMinuteFocused}
+          isValue={alarmMinuteValue}
+          handleTextChange={minutesTextChange}
         />
+
+        <Meridiem />
       </View>
 
       <AlarmButtons />
