@@ -26,6 +26,7 @@ const ActivatedAlarm = () => {
           return (
             <CurrentAlarmTime
               key={id}
+              id={id}
               hour={hour}
               minute={minute}
               meridiem={meridiem}

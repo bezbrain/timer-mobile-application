@@ -3,19 +3,32 @@ import { StyleSheet, Text, View } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { Colors } from "../../../utils/colors";
 import { useCurrentAlarm } from "../../../context/currentAlarm.context";
+import { AlarmFormat } from "../../../context/types.context";
 
 interface CurrentAlarmTimeProps {
+  id: number;
   hour: string;
   minute: string;
   meridiem: string;
 }
 
 const CurrentAlarmTime = ({
+  id,
   hour,
   minute,
   meridiem,
 }: CurrentAlarmTimeProps) => {
-  const { isAlarmSet, setIsAlarmSet } = useCurrentAlarm();
+  const { isAlarmSet, setIsAlarmSet, allAlarmTimes, setAllAlarmTimes } =
+    useCurrentAlarm();
+
+  // DELETE ALARM INITIALLY SET
+  const handleDeleteAlarm = (index: number) => {
+    const newAllAlarms = allAlarmTimes.filter(
+      (each: AlarmFormat) => each.id !== index
+    );
+
+    setAllAlarmTimes(newAllAlarms);
+  };
 
   return (
     <View style={styles.currentAlarmContainer}>
@@ -27,7 +40,12 @@ const CurrentAlarmTime = ({
       </Text>
 
       <View style={styles.iconsContainer}>
-        <AntDesign name="delete" size={24} color="#dd1a13" />
+        <AntDesign
+          name="delete"
+          size={24}
+          color="#dd1a13"
+          onPress={() => handleDeleteAlarm(id)}
+        />
 
         {!isAlarmSet && (
           <MaterialCommunityIcons
