@@ -22,7 +22,7 @@ const ActivatedAlarm = () => {
       {showAlarmModal && <SetAlarmModal />}
       <ScrollView style={styles.alarmsContainer}>
         {allAlarmTimes.map((each: AlarmFormat) => {
-          const { id, hour, minute, meridiem } = each;
+          const { id, hour, minute, meridiem, isAlarmOn } = each;
           return (
             <CurrentAlarmTime
               key={id}
@@ -30,6 +30,7 @@ const ActivatedAlarm = () => {
               hour={hour}
               minute={minute}
               meridiem={meridiem}
+              isAlarmOn={isAlarmOn}
             />
           );
         })}

@@ -16,4 +16,5 @@ export interface AlarmFormat {
   hour: string;
   minute: string;
   meridiem: string;
+  isAlarmOn: boolean;
 }

@@ -50,6 +50,7 @@ const AlarmButtons = () => {
         hour: alarmHourValue,
         minute: alarmMinuteValue,
         meridiem: pickMeridiem ? "PM" : "AM",
+        isAlarmOn: true,
       },
     ]);
     setAlarmMinuteValue("");

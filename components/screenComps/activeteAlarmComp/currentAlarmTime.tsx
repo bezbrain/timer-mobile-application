@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { Colors } from "../../../utils/colors";
@@ -10,6 +10,7 @@ interface CurrentAlarmTimeProps {
   hour: string;
   minute: string;
   meridiem: string;
+  isAlarmOn: boolean;
 }
 
 const CurrentAlarmTime = ({
@@ -17,9 +18,16 @@ const CurrentAlarmTime = ({
   hour,
   minute,
   meridiem,
+  isAlarmOn,
 }: CurrentAlarmTimeProps) => {
-  const { isAlarmSet, setIsAlarmSet, allAlarmTimes, setAllAlarmTimes } =
-    useCurrentAlarm();
+  const {
+    isAlarmSetOn,
+    setIsAlarmSetOn,
+    isAlarmSetOff,
+    setIsAlarmSetOff,
+    allAlarmTimes,
+    setAllAlarmTimes,
+  } = useCurrentAlarm();
 
   // DELETE ALARM INITIALLY SET
   const handleDeleteAlarm = (index: number) => {
@@ -28,6 +36,34 @@ const CurrentAlarmTime = ({
     );
 
     setAllAlarmTimes(newAllAlarms);
+  };
+
+  const deactivateAlarmClick = (index: number) => {
+    const updatedAlarm = allAlarmTimes.map((each: AlarmFormat) => {
+      if (each.id === index) {
+        return {
+          ...each,
+          isAlarmOn: true,
+        };
+      }
+      return each;
+    });
+    // console.log(updatedAlarm);
+    setAllAlarmTimes(updatedAlarm);
+  };
+
+  const activeAlarmClick = (index: number) => {
+    const updatedAlarm = allAlarmTimes.map((each: AlarmFormat) => {
+      if (each.id === index) {
+        return {
+          ...each,
+          isAlarmOn: false,
+        };
+      }
+      return each;
+    });
+    // console.log(updatedAlarm);
+    setAllAlarmTimes(updatedAlarm);
   };
 
   return (
@@ -47,20 +83,20 @@ const CurrentAlarmTime = ({
           onPress={() => handleDeleteAlarm(id)}
         />
 
-        {!isAlarmSet && (
+        {!isAlarmOn && (
           <MaterialCommunityIcons
             name="toggle-switch-off-outline"
             size={48}
-            color="#92b5bf"
-            onPress={() => setIsAlarmSet(!isAlarmSet)}
+            color="#dd1a13"
+            onPress={() => deactivateAlarmClick(id)}
           />
         )}
-        {isAlarmSet && (
+        {isAlarmOn && (
           <MaterialCommunityIcons
             name="toggle-switch-outline"
             size={48}
             color="#92b5bf"
-            onPress={() => setIsAlarmSet(!isAlarmSet)}
+            onPress={() => activeAlarmClick(id)}
           />
         )}
       </View>
