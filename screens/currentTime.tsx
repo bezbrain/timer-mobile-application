@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import { Foundation } from "@expo/vector-icons";
 import { Colors } from "../utils/colors";
 import { formatDate } from "../utils/convertDateFormats";
@@ -8,6 +14,8 @@ import { ContainerWrappers } from "../components/helpers";
 
 const CurrentTime = () => {
   const [isCurrentTime, setIsCurrentTime] = useState<Date>(new Date());
+
+  const { width, height } = useWindowDimensions();
 
   // console.log(isCurrentTime.getTimezoneOffset());
   const timeZone = new Date().toLocaleTimeString("en-US", {
@@ -33,14 +41,19 @@ const CurrentTime = () => {
   const formattedMinute = isCurrentTime.getMinutes();
   const formattedAmPm = formattedHour < 12 ? "AM" : "PM";
 
+  const timeFont = width < 360 || height < 400 ? 48 : 84;
+  const timeTypeFont = width < 360 || height < 400 ? 20 : 32;
+
   return (
     <ContainerWrappers>
       <View>
         <Text>
-          <Text style={styles.timeText}>
+          <Text style={[styles.timeText, { fontSize: timeFont }]}>
             {formattedHour}:{formattedMinute.toString().padStart(2, "0")}
           </Text>
-          <Text style={styles.timeType}>{formattedAmPm}</Text>
+          <Text style={[styles.timeType, { fontSize: timeTypeFont }]}>
+            {formattedAmPm}
+          </Text>
         </Text>
 
         <Text style={styles.continent}>{dateAndTime}</Text>
@@ -59,16 +72,20 @@ const CurrentTime = () => {
 
 export default CurrentTime;
 
+const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
+
 const styles = StyleSheet.create({
   timeText: {
-    fontSize: 84,
+    // fontSize: width < 360 || height < 400 ? 48 : 84,
     color: Colors.whitish,
     fontFamily: "degular-thin",
+    textAlign: "center",
   },
   timeType: {
     color: Colors.whitish,
     fontFamily: "degular-bold",
-    fontSize: 32,
+    // fontSize: 32,
   },
 
   continent: {
