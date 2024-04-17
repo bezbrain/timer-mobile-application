@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { Colors } from "../utils/colors";
 import { ContainerWrappers } from "../components/helpers";
@@ -10,6 +10,8 @@ import { useCurrentAlarm } from "../context/currentAlarm.context";
 const SecondsCountDown = () => {
   const { countDown, setCountDown, startCountDown, setStartCountDown } =
     useCurrentAlarm();
+
+  const { width, height } = useWindowDimensions();
 
   // TRIGGER THE COUNTDOWN
   const handleStartCountDown = () => {
@@ -25,11 +27,26 @@ const SecondsCountDown = () => {
     }
   }, [countDown, startCountDown]);
 
+  let countDownWidth = 250;
+
+  if (width < 360) {
+    countDownWidth = 120;
+  }
+  if (height < 400) {
+    countDownWidth = 100;
+  }
+
+  const countDownStyle = {
+    width: countDownWidth,
+    height: countDownWidth,
+    borderRadius: countDownWidth / 2,
+  };
+
   return (
     <ContainerWrappers>
       {!countDown && <CountDownModal />}
       <View style={styles.countDownContainer}>
-        <View style={styles.countDownCircle}>
+        <View style={[styles.countDownCircle, countDownStyle]}>
           <Text style={styles.countDownText}>{countDown}</Text>
         </View>
       </View>
@@ -49,9 +66,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   countDownCircle: {
-    height: 250,
-    width: 250,
-    borderRadius: 125,
+    // height: 250,
+    // width: 250,
+    // borderRadius: 125,
     borderWidth: 3,
     borderColor: Colors.whitish700,
     justifyContent: "center",
