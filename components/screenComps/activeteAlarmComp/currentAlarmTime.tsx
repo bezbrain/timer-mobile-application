@@ -20,14 +20,7 @@ const CurrentAlarmTime = ({
   meridiem,
   isAlarmOn,
 }: CurrentAlarmTimeProps) => {
-  const {
-    isAlarmSetOn,
-    setIsAlarmSetOn,
-    isAlarmSetOff,
-    setIsAlarmSetOff,
-    allAlarmTimes,
-    setAllAlarmTimes,
-  } = useCurrentAlarm();
+  const { allAlarmTimes, setAllAlarmTimes } = useCurrentAlarm();
 
   // DELETE ALARM INITIALLY SET
   const handleDeleteAlarm = (index: number) => {
