@@ -3,12 +3,14 @@ import { AlarmFormat, ChildrenType } from "./types.context";
 
 const AppContext = createContext<any | undefined>(undefined);
 
-const alarmFormat: AlarmFormat = {
-  id: Date.now(),
-  hour: "",
-  minute: "",
-  meridiem: "",
-};
+const alarmFormat: AlarmFormat[] = [
+  {
+    id: 0,
+    hour: "",
+    minute: "",
+    meridiem: "",
+  },
+];
 
 export const CurrentTimeProvider = ({ children }: ChildrenType) => {
   const [isAlarmSet, setIsAlarmSet] = useState<boolean>(false);
@@ -22,7 +24,7 @@ export const CurrentTimeProvider = ({ children }: ChildrenType) => {
   const [trackStopWatchCount, setTrackStopWatchCount] =
     useState<boolean>(false);
 
-  const [allAlarmTimes, setAllAlarmTimes] = useState<AlarmFormat>(alarmFormat);
+  const [allAlarmTimes, setAllAlarmTimes] = useState<AlarmFormat[]>([]);
   const [showAlarmModal, setShowAlarmModal] = useState<boolean>(false);
   const [alarmMinuteValue, setAlarmMinuteValue] = useState<string>("");
   const [alarmHourValue, setAlarmHourValue] = useState<string>("");

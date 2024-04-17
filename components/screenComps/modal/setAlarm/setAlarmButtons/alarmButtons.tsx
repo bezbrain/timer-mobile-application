@@ -2,10 +2,17 @@ import React from "react";
 import { Pressable, View, Text, StyleSheet } from "react-native";
 import { Colors } from "../../../../../utils/colors";
 import { useCurrentAlarm } from "../../../../../context/currentAlarm.context";
+import { AlarmFormat } from "../../../../../context/types.context";
 
 const AlarmButtons = () => {
-  const { setShowAlarmModal, allAlarmTimes, setAllAlarmTimes } =
-    useCurrentAlarm();
+  const {
+    setShowAlarmModal,
+    allAlarmTimes,
+    setAllAlarmTimes,
+    alarmMinuteValue,
+    alarmHourValue,
+    pickMeridiem,
+  } = useCurrentAlarm();
 
   const handleCloseModal = () => {
     setShowAlarmModal(false);
@@ -13,7 +20,18 @@ const AlarmButtons = () => {
 
   const handleSetAlarm = () => {
     setShowAlarmModal(false);
-    // setAllAlarmTimes()
+    setAllAlarmTimes((prevAlarm: AlarmFormat[]) => [
+      ...prevAlarm,
+      {
+        id: Date.now(),
+        hour: alarmHourValue,
+        minute: alarmMinuteValue,
+        meridiem: pickMeridiem ? "AM" : "PM",
+      },
+    ]);
+    console.log(allAlarmTimes);
+    // console.log(alarmHourValue);
+    // console.log(alarmMinuteValue);
   };
 
   return (

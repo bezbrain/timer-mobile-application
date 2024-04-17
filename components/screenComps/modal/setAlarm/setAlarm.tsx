@@ -39,10 +39,12 @@ const SetAlarm = () => {
 
   const hoursTextChange = (hours: string) => {
     setAlarmHourValue(hours);
+    // console.log(alarmHourValue);
   };
 
   const minutesTextChange = (minutes: string) => {
     setAlarmMinuteValue(minutes);
+    // console.log(alarmMinuteValue);
   };
 
   return (
