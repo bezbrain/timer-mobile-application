@@ -3,6 +3,7 @@ import {
   Keyboard,
   Modal,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -13,17 +14,24 @@ import { SetAlarm } from "./";
 
 const SetAlarmModal = () => {
   return (
-    <Modal animationType="slide" transparent={true} visible={true}>
-      <SafeAreaView style={styles.modalContainer}>
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <View style={styles.modalTextContainer}>
-            <Text style={styles.modalText}>Set Alarm</Text>
+    <ScrollView>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={true}
+        supportedOrientations={["portrait", "landscape"]}
+      >
+        <SafeAreaView style={styles.modalContainer}>
+          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <View style={styles.modalTextContainer}>
+              <Text style={styles.modalText}>Set Alarm</Text>
 
-            <SetAlarm />
-          </View>
-        </TouchableWithoutFeedback>
-      </SafeAreaView>
-    </Modal>
+              <SetAlarm />
+            </View>
+          </TouchableWithoutFeedback>
+        </SafeAreaView>
+      </Modal>
+    </ScrollView>
   );
 };
 
