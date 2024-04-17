@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { ContainerWrappers } from "../components/helpers";
 import { RoundedButton } from "../components/general";
@@ -15,6 +15,8 @@ const StopWatch = () => {
     trackStopWatchCount,
     setTrackStopWatchCount,
   } = useCurrentAlarm();
+
+  const { width, height } = useWindowDimensions();
 
   // TRIGGER THE STOPWATCH START OR STOP
   const handleStopWatch = () => {
@@ -45,10 +47,25 @@ const StopWatch = () => {
     }
   }, [stopWatchCount, startStopWatchCount]);
 
+  let stopWatchWidth = 250;
+
+  if (width < 360) {
+    stopWatchWidth = 120;
+  }
+  if (height < 400) {
+    stopWatchWidth = 100;
+  }
+
+  const stopWatchStyle = {
+    width: stopWatchWidth,
+    height: stopWatchWidth,
+    borderRadius: stopWatchWidth / 2,
+  };
+
   return (
     <ContainerWrappers>
       <View style={styles.stopWatchContainer}>
-        <View style={styles.stopWatchCircle}>
+        <View style={[styles.stopWatchCircle, stopWatchStyle]}>
           <Text style={styles.stopWatchCount}>{stopWatchCount}</Text>
         </View>
       </View>
