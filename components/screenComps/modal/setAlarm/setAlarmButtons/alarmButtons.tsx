@@ -3,15 +3,17 @@ import { Pressable, View, Text, StyleSheet } from "react-native";
 import { Colors } from "../../../../../utils/colors";
 import { useCurrentAlarm } from "../../../../../context/currentAlarm.context";
 import { AlarmFormat } from "../../../../../context/types.context";
+import { alertMessage } from "../../../../../utils/alertMessage";
 
 const AlarmButtons = () => {
   const {
     setShowAlarmModal,
-    allAlarmTimes,
     setAllAlarmTimes,
     alarmMinuteValue,
     alarmHourValue,
     pickMeridiem,
+    setAlarmMinuteValue,
+    setAlarmHourValue,
   } = useCurrentAlarm();
 
   const handleCloseModal = () => {
@@ -19,6 +21,27 @@ const AlarmButtons = () => {
   };
 
   const handleSetAlarm = () => {
+    if (!alarmHourValue || !alarmMinuteValue) {
+      return alertMessage(
+        "Empty Field alart",
+        "Hour or minute field should not be empty",
+        "Okay"
+      );
+    }
+    if (alarmHourValue >= 24) {
+      return alertMessage(
+        "Incorrect Hour",
+        "Hour should be from 00 to 23",
+        "Okay"
+      );
+    }
+    if (alarmMinuteValue > 60) {
+      return alertMessage(
+        "Incorrect Minutes",
+        "Minute should be from 00 to 59",
+        "Okay"
+      );
+    }
     setShowAlarmModal(false);
     setAllAlarmTimes((prevAlarm: AlarmFormat[]) => [
       ...prevAlarm,
@@ -29,7 +52,8 @@ const AlarmButtons = () => {
         meridiem: pickMeridiem ? "PM" : "AM",
       },
     ]);
-    console.log(allAlarmTimes);
+    setAlarmMinuteValue("");
+    setAlarmHourValue("");
   };
 
   return (
