@@ -4,14 +4,26 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Colors } from "../../../utils/colors";
 import { useCurrentAlarm } from "../../../context/currentAlarm.context";
 
-const CurrentAlarmTime = () => {
+interface CurrentAlarmTimeProps {
+  hour: string;
+  minute: string;
+  meridiem: string;
+}
+
+const CurrentAlarmTime = ({
+  hour,
+  minute,
+  meridiem,
+}: CurrentAlarmTimeProps) => {
   const { isAlarmSet, setIsAlarmSet } = useCurrentAlarm();
 
   return (
     <View style={styles.currentAlarmContainer}>
       <Text>
-        <Text style={styles.timeText}>12:25</Text>
-        <Text style={styles.timeType}>PM</Text>
+        <Text style={styles.timeText}>
+          {hour}:{minute}
+        </Text>
+        <Text style={styles.timeType}>{meridiem}</Text>
       </Text>
       {!isAlarmSet && (
         <MaterialCommunityIcons

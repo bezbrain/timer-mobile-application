@@ -26,12 +26,10 @@ const AlarmButtons = () => {
         id: Date.now(),
         hour: alarmHourValue,
         minute: alarmMinuteValue,
-        meridiem: pickMeridiem ? "AM" : "PM",
+        meridiem: pickMeridiem ? "PM" : "AM",
       },
     ]);
     console.log(allAlarmTimes);
-    // console.log(alarmHourValue);
-    // console.log(alarmMinuteValue);
   };
 
   return (
