@@ -20,7 +20,7 @@ const SharedHeader = () => {
   const { isCurrentPage, setIsCurrentPage, isSettings, setIsSettings } =
     useScreenController();
 
-  const { width, height } = useWindowDimensions();
+  const { height } = useWindowDimensions();
 
   // SET ALL OBJECT KEY VALUES TO FALSE
   const setAllToFalse = () => {
