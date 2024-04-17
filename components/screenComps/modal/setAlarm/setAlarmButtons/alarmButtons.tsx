@@ -74,7 +74,9 @@ export default AlarmButtons;
 const styles = StyleSheet.create({
   modalButtonsContainer: {
     flexDirection: "row",
+    justifyContent: "space-around",
     gap: 32,
+    marginTop: 12,
   },
   buttonText: {
     color: Colors.accent400,
