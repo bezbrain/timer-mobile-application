@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { Colors } from "../../../utils/colors";
 import { useCurrentAlarm } from "../../../context/currentAlarm.context";
 
@@ -25,22 +25,27 @@ const CurrentAlarmTime = ({
         </Text>
         <Text style={styles.timeType}>{meridiem}</Text>
       </Text>
-      {!isAlarmSet && (
-        <MaterialCommunityIcons
-          name="toggle-switch-off-outline"
-          size={48}
-          color="#92b5bf"
-          onPress={() => setIsAlarmSet(!isAlarmSet)}
-        />
-      )}
-      {isAlarmSet && (
-        <MaterialCommunityIcons
-          name="toggle-switch-outline"
-          size={48}
-          color="#92b5bf"
-          onPress={() => setIsAlarmSet(!isAlarmSet)}
-        />
-      )}
+
+      <View style={styles.iconsContainer}>
+        <AntDesign name="delete" size={24} color="#dd1a13" />
+
+        {!isAlarmSet && (
+          <MaterialCommunityIcons
+            name="toggle-switch-off-outline"
+            size={48}
+            color="#92b5bf"
+            onPress={() => setIsAlarmSet(!isAlarmSet)}
+          />
+        )}
+        {isAlarmSet && (
+          <MaterialCommunityIcons
+            name="toggle-switch-outline"
+            size={48}
+            color="#92b5bf"
+            onPress={() => setIsAlarmSet(!isAlarmSet)}
+          />
+        )}
+      </View>
     </View>
   );
 };
@@ -65,5 +70,10 @@ const styles = StyleSheet.create({
     color: Colors.whitish,
     fontFamily: "degular-bold",
     fontSize: 20,
+  },
+  iconsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 16,
   },
 });
